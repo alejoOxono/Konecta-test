@@ -17,40 +17,18 @@ class Rest{
         }
     }
 
-
-    // private function getData($sqlQuery) {
-	// 	$result = mysqli_query($this->dbConnect, $sqlQuery);
-	// 	if(!$result){
-	// 		die('Error in query: '. mysqli_error());
-	// 	}
-	// 	$data= array();
-	// 	while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
-	// 		$data[]=$row;            
-	// 	}
-	// 	return $data;
-	// }
-
-
-	// private function getNumRows($sqlQuery) {
-	// 	$result = mysqli_query($this->dbConnect, $sqlQuery);
-	// 	if(!$result){
-	// 		die('Error in query: '. mysqli_error());
-	// 	}
-	// 	$numRows = mysqli_num_rows($result);
-	// 	return $numRows;
-	// }
     
-
     function insertProduct($konectaData){ 		
 	    $konectaName=$konectaData->producto_name;
 	    $konectaReferencia=$konectaData->producto_referencia;
+		$konectaPrecio=$konectaData->producto_precio;
 	    $konectaPeso=$konectaData->producto_peso;
 	    $konectaCategoria=$konectaData->producto_categoria;		
 	    $konectaStock=$konectaData->producto_stock;
 
 	    $konectaQuery="
     		INSERT INTO ".$this->konectaTable." 
-		    SET producto_name='".$konectaName."', producto_referencia='".$konectaReferencia."', producto_peso='".$konectaPeso."', producto_categoria='".$konectaCategoria."', producto_stock='".$konectaStock."', fecha=curdate()";
+		    SET producto_name='".$konectaName."', producto_referencia='".$konectaReferencia."', producto_precio='".$konectaPrecio."', producto_peso='".$konectaPeso."', producto_categoria='".$konectaCategoria."', producto_stock='".$konectaStock."', fecha=curdate()";
 
 	    if( mysqli_query($this->dbConnect, $konectaQuery)) {
     		$messgae = "Producto creado satisfatoriamente";
@@ -92,12 +70,13 @@ class Rest{
     	if($konectaData->producto_id) {
 		    $konectaName=$konectaData->producto_name;
 	        $konectaReferencia=$konectaData->producto_referencia;
+			$konectaPrecio=$konectaData->producto_precio;
 	        $konectaPeso=$konectaData->producto_peso;
 	        $konectaCategoria=$konectaData->producto_categoria;		
 	        $konectaStock=$konectaData->producto_stock;
 		    $konectaQuery="
     			UPDATE ".$this->konectaTable." 
-			    SET producto_name='".$konectaName."', producto_referencia='".$konectaReferencia."', producto_peso='".$konectaPeso."', producto_categoria='".$konectaCategoria."', producto_stock='".$konectaStock."'
+			    SET producto_name='".$konectaName."', producto_referencia='".$konectaReferencia."', producto_precio='".$konectaPrecio."', producto_peso='".$konectaPeso."', producto_categoria='".$konectaCategoria."', producto_stock='".$konectaStock."'
 			    WHERE producto_id = '".$konectaData->producto_id."'";
 			    echo $konectaQuery;
 		    if( mysqli_query($this->dbConnect, $konectaQuery)) {

@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import CrearProducto from './Components/CrearProducto/CrearProducto';
+import LandPage from './Components/LandPage/LandPage';
+import ProductPage from './Components/ProductPage/ProductPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route
+      path='/'
+      element={<LandPage />}
+      />
+      <Route
+      path='/producto/:producto_id'
+      element={<ProductPage />}
+      />
+      <Route
+      path='/formulario'
+      element={<CrearProducto />}
+      />
+    </Routes>
   );
 }
 
