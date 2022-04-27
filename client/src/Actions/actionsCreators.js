@@ -1,12 +1,12 @@
-import { GET_DATA } from "./constants";
+import { GET_DATA, SEARCH_DATA } from "./constants";
 
 
 const axios = require('axios');
 
-export const getData = (value) => {
+export const getData = () => {
     return async function (dispatch) {
         axios
-            .get(value ? `http://127.0.0.1:8001/read.php?producto_id=${value}` : 'http://127.0.0.1:8001/read.php')
+            .get('http://127.0.0.1:8001/read.php')
             .then((data) => {
                 dispatch({
                     type: GET_DATA,
@@ -58,5 +58,22 @@ export const updateProduct = (object) => {
             .catch((err) => {
                 console.log(err);
             });
+    }
+}
+
+
+export const searchData = (value) => {
+    return async function (dispatch) {
+        axios
+            .get(`http://127.0.0.1:8001/read.php?producto_id=${value}`)
+            .then((data) => {
+                dispatch({
+                    type: SEARCH_DATA,
+                    payload: data.data
+                })
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 }

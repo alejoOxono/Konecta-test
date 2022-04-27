@@ -1,8 +1,9 @@
-import {  GET_DATA } from "../Actions/constants";
+import { GET_DATA, SEARCH_DATA } from "../Actions/constants";
 
 
 const stateInitial = {
-    listProducts: []
+    listProducts: [],
+    productForSell: []
 }
 
 
@@ -13,6 +14,13 @@ const reducer = (state = stateInitial, { type, payload }) => {
                 ...state,
                 listProducts: payload
             }
+            
+        case SEARCH_DATA:
+            return {
+                ...state,
+                productForSell: payload
+            }
+        
 
         default:
             return state;
